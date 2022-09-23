@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- 제이쿼리 UI -->
+  <script src="../../js/jquery-ui.js"></script>
+  <style>
+    @charset "utf-8";
+/* CSS 초기화 */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap'); */
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 400;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Regular.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Regular.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Regular.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Regular.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 500;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Medium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Medium.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Medium.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Medium.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Medium.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Bold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Bold.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Bold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Bold.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Bold.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'NotoSansKR';
+    font-weight: 900;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Black.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Black.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Black.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Black.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/Noto/NotoSansKR-Black.ttf') format("truetype");
+    font-display: swap;
+} 
+
+body *{
+    font-family: 'NotoSansKR';
+}
+
+input{
+    outline:none;
+}
+
+ /* IE의 경우 */
+ input::-ms-clear,
+ input::-ms-reveal{
+     display:none;
+ }
+ /* 크롬의 경우 */
+ input::-webkit-search-decoration,
+ input::-webkit-search-cancel-button,
+ input::-webkit-search-results-button,
+ input::-webkit-search-results-decoration{
+     display:none;
+ }
+ input[type=text], select, textarea, button{
+    appearance: none;
+    border-radius:0;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+  }
+input, select, textarea, button, a, label, li {
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+/* select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+} */
+select:focus{
+    outline: none;
+}
+ /* select::-ms-expand{
+    display:none;
+ } */
+
+/* ------------------------------------------------------------------------ */
+
+html, body, div, span, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,abbr, address, cite, code,del, dfn,em, img, ins, kbd, q, samp,small, strong, sub, sup, var,b, i,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary,time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+ol, ul, li{
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+    text-decoration: none;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+
+address{font-style:normal;}
+
+    .recomPro {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      background: #F5F5F5;
+      padding-top: 50px;
+      box-sizing: border-box;
+    }
+
+    .recomPro>div.inner {
+    }
+
+    .recomPro .slide1Wrap {
+      position: relative;
+      overflow: hidden;
+      height: 337px;
+      margin-bottom: 28px;
+    }
+
+    .recomPro .slide1 {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
+      -webkit-transition-timing-function: linear;
+      /* Safari and Chrome */
+      transition-timing-function: linear;
+      display:flex;
+    }
+
+    .recomPro .slide2{
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      overflow: hidden;
+      -webkit-transition-timing-function: linear;
+      /* Safari and Chrome */
+      transition-timing-function: linear;
+      display:flex;
+    }
+
+    .recomPro .slide1 li, .recomPro .slide2 li{
+      width: 480px;
+      height: 120px;
+      padding: 20px 0px 12px;
+      box-shadow: 0px 6px 26px rgba(0, 0, 0, 0.05);
+      border-radius: 20px;
+      background: #fff;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      text-align: center;
+      letter-spacing: -0.04em;
+      line-height: 28px;
+      margin:0 17px;
+    }
+    
+    .recomPro ul > li > h5{
+      font-weight: 600;
+      font-size: 18px;
+      color: #4F8EF7;
+    }
+    .recomPro ul > li > strong{
+      font-weight: 600;
+      font-size: 18px;
+      color: #222222;
+      display: block;
+      position: relative;
+      width: 394px;
+      margin: 0px auto;
+    }
+    .recomPro ul > li > strong::before{
+      content: '❝';
+      position: absolute;
+      left: -8px;
+      font-size: 29px;
+      color: #888888;
+      transform: translateY(-6px);
+    }
+    .recomPro ul > li > strong::after{
+      content: '❞';
+      position: absolute;
+      right: -8px;
+      font-size: 29px;
+      color: #888888;
+      transform: translateY(12px);
+    }
+    .recomPro ul > li > span{
+      font-weight: 400;
+      font-size: 13px;
+      color: #888888;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="recomPro" id="recomPro">
+    <div class="inner">
+      <div class="slideWrap">
+        <ul class="slide1">
+          <li>
+            <h5>어렵지 않은 강의!</h5>
+            <strong>취득하고 싶었던 자격증을 쉽게 취득할 수 있었어요.</strong>
+            <span>합격자 김*레 학우님</span>
+          </li>
+          <li>
+            <h5>시간 절약!</h5>
+            <strong>경제적인 부담도 덜고 시간도 아낄 수 있어 좋았어요!</strong>
+            <span>합격자 양*연 학우님</span>
+          </li>
+          <li>
+            <h5>무료 강의!</h5>
+            <strong>좋은강의를 무료로 잘 들었습니다.</strong>
+            <span>합격자 항상웃자 학우님</span>
+          </li>
+          <li>
+            <h5>시공간 제약 NO!</h5>
+            <strong>누구든 언제 어디서나 강의 시청이 가능하다는 점!</strong>
+            <span>합격자 박*슬 학우님</span>
+          </li>
+          <li>
+            <h5>어렵지 않은 강의!</h5>
+            <strong>취득하고 싶었던 자격증을 쉽게 취득할 수 있었어요.</strong>
+            <span>합격자 김*레 학우님</span>
+          </li>
+          <li>
+            <h5>시간 절약!</h5>
+            <strong>경제적인 부담도 덜고 시간도 아낄 수 있어 좋았어요!</strong>
+            <span>합격자 양*연 학우님</span>
+          </li>
+          <li>
+            <h5>무료 강의!</h5>
+            <strong>좋은강의를 무료로 잘 들었습니다.</strong>
+            <span>합격자 항상웃자 학우님</span>
+          </li>
+          <li>
+            <h5>시공간 제약 NO!</h5>
+            <strong>누구든 언제 어디서나 강의 시청이 가능하다는 점!</strong>
+            <span>합격자 박*슬 학우님</span>
+          </li>
+        </ul>
+        <ul class="slide2">
+          <li>
+            <h5>어렵지 않은 강의!</h5>
+            <strong>취득하고 싶었던 자격증을 쉽게 취득할 수 있었어요.</strong>
+            <span>합격자 김*레 학우님</span>
+          </li>
+          <li>
+            <h5>시간 절약!</h5>
+            <strong>경제적인 부담도 덜고 시간도 아낄 수 있어 좋았어요!</strong>
+            <span>합격자 양*연 학우님</span>
+          </li>
+          <li>
+            <h5>무료 강의!</h5>
+            <strong>좋은강의를 무료로 잘 들었습니다.</strong>
+            <span>합격자 항상웃자 학우님</span>
+          </li>
+          <li>
+            <h5>시공간 제약 NO!</h5>
+            <strong>누구든 언제 어디서나 강의 시청이 가능하다는 점!</strong>
+            <span>합격자 박*슬 학우님</span>
+          </li>
+          <li>
+            <h5>어렵지 않은 강의!</h5>
+            <strong>취득하고 싶었던 자격증을 쉽게 취득할 수 있었어요.</strong>
+            <span>합격자 김*레 학우님</span>
+          </li>
+          <li>
+            <h5>시간 절약!</h5>
+            <strong>경제적인 부담도 덜고 시간도 아낄 수 있어 좋았어요!</strong>
+            <span>합격자 양*연 학우님</span>
+          </li>
+          <li>
+            <h5>무료 강의!</h5>
+            <strong>좋은강의를 무료로 잘 들었습니다.</strong>
+            <span>합격자 항상웃자 학우님</span>
+          </li>
+          <li>
+            <h5>시공간 제약 NO!</h5>
+            <strong>누구든 언제 어디서나 강의 시청이 가능하다는 점!</strong>
+            <span>합격자 박*슬 학우님</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- //recomPro e -->
+
+  <script>
+    $(document).ready(function () {
+      var moveType = 0;
+      var moveSpeed = 2000;
+      var moveWork = false;
+      var movePause = false;
+
+      function tkSlide() {
+        var 
+          $tkSlide = $('.slide1'),
+          $tkSlidePos = $('.slide1').css('left').replace(/[^-\d\.]/g, ''),
+          $tkitemW = $('.slide1 li').width(),
+          $tkitemFirst = $('.slide1 li:first-child');
+
+        $tkSlide.css({
+          'left': $tkSlidePos,
+        });
+        if (moveWork == false) {
+          if (moveType == 0) {
+            $tkSlide.animate({ left: -$tkitemW }, {
+              duration: moveSpeed, easing: "linear", step: function () {
+              }, complete: function () {
+                $tkSlide.append("<li>" + $('.slide1 li:first-child').html() + "</li>");
+                $('.slide1 li:first-child').remove();
+                $tkSlide.css('left', '35px');
+                tkSlide();
+              }
+            });
+          }
+        }
+      }
+      tkSlide();
+    });
+
+    $(document).ready(function () {
+      var moveType = 0;
+      var moveSpeed = 2000;
+      var moveWork = false;
+      var movePause = false;
+
+      function tkSlide() {
+        var 
+          $tkSlide = $('.slide2'),
+          $tkSlidePos = $('.slide2').css('right'),
+          $tkitemW = $('.slide2 li').width(),
+          $tkitemFirst = $('.slide2 li:last-child');
+
+        if (moveWork == false) {
+          if (moveType == 0) {
+            $tkSlide.animate({ right: -$tkitemW }, {
+              duration: moveSpeed, easing: "linear", step: function () {
+              }, complete: function () {
+                $tkSlide.prepend("<li>" + $('.slide2 li:last-child').html() + "</li>");
+                $('.slide2 li:last-child').remove();
+                $tkSlide.css('right', '35px');
+                tkSlide();
+              }
+            });
+          }
+        }
+      }
+      
+      tkSlide();
+    });
+  </script>
+
+</body>
+
+</html>
